@@ -115,7 +115,11 @@ bindkey '^[s' peco-src
 function tmux-attach-peco () {
   local selected_session=$(tmux ls | peco | awk '{print $1}' | sed -e 's/.$//')
   if [ -n "$selected_session" ]; then
-    BUFFER="tmux a -t ${selected_session}"
+    if [ -n "$(echo $TMUX)" ]; then
+      BUFFER="tmux switch-client -t ${selected_session}"
+    else
+      BUFFER="tmux a -t ${selected_session}"
+    fi
     zle accept-line
   fi
   zle clear-screen
