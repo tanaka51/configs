@@ -3,8 +3,9 @@
 	email = tanaka51.jp@gmail.com
 [core]
 	excludesfile = ~/.gitignore
+	editor = vim
 [init]
-	templatedir = /Users/tanaka51/.git_templates
+	# templatedir = /Users/tanaka51/.git_templates
 [ghq]
 	root = /Users/tanaka51/src
 [alias]
