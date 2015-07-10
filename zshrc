@@ -57,6 +57,7 @@ export LS_COLORS='di=01;36:ln=01;35:ex=01;31'
 zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=31'
 
 alias be='bundle exec'
+alias c='cargo'
 alias g='git'
 alias la='ls -a'
 alias ll='ls -l'
