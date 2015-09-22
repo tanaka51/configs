@@ -1,5 +1,5 @@
 [user]
-	name = Koichi TANAKA
+	name = Koichi Tanaka
 	email = tanaka51.jp@gmail.com
 [core]
 	excludesfile = ~/.gitignore
@@ -7,7 +7,7 @@
 [init]
 	# templatedir = /Users/tanaka51/.git_templates
 [ghq]
-	root = /Users/tanaka51/src
+	root = /home/tanaka51/src
 [alias]
   pr = pull --rebase
   b = branch

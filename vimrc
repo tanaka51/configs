@@ -24,6 +24,7 @@ Plugin 'rking/ag.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'thinca/vim-quickrun'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-dispatch'
@@ -37,7 +38,7 @@ call vundle#end()
 filetype plugin indent on
 
 set ambiwidth=double
-set clipboard+=unnamed,autoselect
+set clipboard+=unnamed,unnamedplus,autoselect
 set encoding=utf-8
 set et
 set foldlevel=4
@@ -141,3 +142,9 @@ endif
 
 "" gist-vim
 let g:gist_detect_filetype = 1
+
+"" quickrun
+let g:quickrun_config = {}
+let g:quickrun_config._ = {
+  \ 'outputter/buffer/split' : 'below 8sp',
+  \ }

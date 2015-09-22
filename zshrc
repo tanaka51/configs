@@ -77,6 +77,7 @@ compdef g=git
 export GOPATH=$HOME
 
 export PATH="$GOPATH/bin:$PATH"
+export PATH="$PATH:/usr/local/go/bin" # install golang on /usr/local/go
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
