@@ -23,5 +23,6 @@
   g = grep
   tr = log --decorate --oneline --graph
   ta = log --decorate --oneline --graph --all
+  taa = log --graph --date=short --pretty=format:'%C(yellow)%h%Creset %Cgreen%d%Creset %C(blue)%an%Creset %cd %s'
 [github]
 	user = tanaka51

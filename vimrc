@@ -6,6 +6,7 @@ call vundle#begin()
 
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'cespare/vim-toml'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'glidenote/memolist.vim'
 Plugin 'glidenote/octoeditor.vim'
@@ -20,15 +21,14 @@ Plugin 'mattn/webapi-vim'
 Plugin 'mustache/vim-mustache-handlebars'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'nelstrom/vim-markdown-folding'
+Plugin 'racer-rust/vim-racer'
 Plugin 'rking/ag.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'slim-template/vim-slim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'thinca/vim-quickrun'
-Plugin 'thoughtbot/vim-rspec'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
@@ -38,48 +38,56 @@ call vundle#end()
 filetype plugin indent on
 
 set ambiwidth=double
-set clipboard+=unnamed,unnamedplus,autoselect
+set clipboard+=unnamedplus
 set encoding=utf-8
 set et
 set foldlevel=4
+set hidden
 set hls
 set incsearch
 set number
+set shiftwidth=2
 set smartcase
 set smartindent
-set sw=2
 set t_Co=256
 set t_ut=
-set ts=2
+set tabstop=2
 set undofile
 
 noh
 
-let mapleader = " "
-
-noremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap ; :
 nnoremap : ;
 
+let mapleader = " "
+
+noremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+
 nnoremap <silent><leader>j :JunkFile<CR>
+nnoremap <silent><leader>q :QuickRun<CR>
+nnoremap <silent><leader>cb :Dispatch cargo run<CR>
 
 nnoremap <silent><Leader>mn :MemoNew<CR>
 nnoremap <silent><Leader>mf :exe "CtrlP" g:memolist_path<CR><f5>
 nnoremap <silent><Leader>mg :MemoGrep<CR>
 
 nnoremap <silent><Leader>on :OctopressNew<CR>
-nnoremap <silent><Leader>ol :OctopressList<CR>
 nnoremap <silent><Leader>of :exec "CtrlP" g:octopress_path . "/source/_posts"<CR>
-nnoremap <silent><Leader>og :OctopressGrep<CR>
-nnoremap <silent><Leader>,og :OctopressGenerate<CR>
-nnoremap <silent><Leader>,od :OctopressDeploy<CR>
 
 nnoremap <c-]> :CtrlPtjump<CR>
 vnoremap <c-]> :CtrlPtjumpVisual<CR>
 
 nnoremap <silent><Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
-nnoremap <silent><Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap <silent><Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR><CR>
+
+"" copy & paste to system
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
 
 "" filetype
 au BufNewFile,BufRead *.jbuilder setf ruby
@@ -148,3 +156,8 @@ let g:quickrun_config = {}
 let g:quickrun_config._ = {
   \ 'outputter/buffer/split' : 'below 8sp',
   \ }
+
+"" racer
+set hidden
+let g:racer_cmd = "$HOME/src/github.com/phildawes/racer/target/release/racer"
+let $RUST_SRC_PATH="/home/tanaka51/src/github.com/rust-lang/rust/src"
