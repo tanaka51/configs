@@ -1,4 +1,6 @@
-export LANG=ja_JP.UTF-8
+export LANG=en_US.UTF-8
+export FC_LANG=ja
+
 export EDITOR=vim
 export TERM='screen-256color'
 
@@ -84,23 +86,22 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH="$HOME/.rbenv/shims:$PATH"
 eval "$(rbenv init -)"
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+
+# virtualenvwrapper
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+source $(which virtualenvwrapper.sh)
+
+# nvm
+export NVM_DIR="/home/tanaka51/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
 export PATH="./bin:./mybin:/usr/local/bin:$PATH"
-
-# for ruby on gentoo
-unset RUBYOPT
-
-# Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=/Users/tanaka51/app/cocos2d-x-3.2/tools/cocos2d-console/bin
-export PATH=$COCOS_CONSOLE_ROOT:$PATH
-
-# Add environment variable NDK_ROOT for cocos2d-x
-export NDK_ROOT=/Users/tanaka51/app/android-ndk-r9d
-export PATH=$NDK_ROOT:$PATH
-
-# Add environment variable ANDROID_SDK_ROOT for cocos2d-x
-export ANDROID_SDK_ROOT=/Applications/Android\ Studio.app/sdk
-export PATH=$ANDROID_SDK_ROOT:$PATH
-export PATH=$ANDROID_SDK_ROOT/tools:$ANDROID_SDK_ROOT/platform-tools:$PATH
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # http://blog.kentarok.org/entry/2014/06/03/135300
 function peco-src () {
@@ -131,3 +132,6 @@ bindkey '^[t' tmux-attach-peco
 
 # OPAM configuration
 . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
