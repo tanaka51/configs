@@ -80,25 +80,6 @@ export GOPATH=$HOME
 
 export PATH="$GOPATH/bin:$PATH"
 export PATH="$PATH:/usr/local/go/bin" # install golang on /usr/local/go
-
-# rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:$PATH"
-eval "$(rbenv init -)"
-
-# pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-# virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-source $(which virtualenvwrapper.sh)
-
-# nvm
-export NVM_DIR="/home/tanaka51/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
 export PATH="./bin:./mybin:/usr/local/bin:$PATH"
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -130,8 +111,13 @@ function tmux-attach-peco () {
 zle -N tmux-attach-peco
 bindkey '^[t' tmux-attach-peco
 
-# OPAM configuration
-. $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# anyenv
+export PATH="$HOME/.anyenv/bin:$PATH"
+eval "$(anyenv init -)"
+
+# virtualenvwrapper
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+source $(which virtualenvwrapper.sh)
