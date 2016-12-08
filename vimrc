@@ -1,37 +1,39 @@
 set nocompatible
-filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Load vim-plug
+if empty(glob("~/.vim/autoload/plug.vim"))
+  execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+endif
 
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'cespare/vim-toml'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'gmarik/Vundle.vim'
-Plugin 'ivalkeen/vim-ctrlp-tjump'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'justinmk/vim-dirvish'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'mxw/vim-jsx'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'pangloss/vim-javascript'
-Plugin 'racer-rust/vim-racer'
-Plugin 'rking/ag.vim'
-Plugin 'rust-lang/rust.vim'
-Plugin 'slim-template/vim-slim'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'thinca/vim-quickrun'
-Plugin 'tomtom/tcomment_vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'w0ng/vim-hybrid'
+call plug#begin('~/.vim/plugged')
 
-call vundle#end()
-filetype plugin indent on
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'cespare/vim-toml'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'gmarik/Vundle.vim'
+Plug 'ivalkeen/vim-ctrlp-tjump'
+Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/vim-easy-align'
+Plug 'justinmk/vim-dirvish'
+Plug 'kchmck/vim-coffee-script'
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'mxw/vim-jsx'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'pangloss/vim-javascript'
+Plug 'racer-rust/vim-racer'
+Plug 'rking/ag.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'slim-template/vim-slim'
+Plug 'tacahiroy/ctrlp-funky'
+Plug 'thinca/vim-quickrun'
+Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'w0ng/vim-hybrid'
+
+call plug#end()
 
 set ambiwidth=double
 set clipboard+=unnamedplus
