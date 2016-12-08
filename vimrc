@@ -4,23 +4,19 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'bronson/vim-trailing-whitespace'
 Plugin 'cespare/vim-toml'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'glidenote/memolist.vim'
-Plugin 'glidenote/octoeditor.vim'
 Plugin 'gmarik/Vundle.vim'
-Plugin 'h1mesuke/vim-alignta'
 Plugin 'ivalkeen/vim-ctrlp-tjump'
 Plugin 'jiangmiao/auto-pairs'
+Plugin 'junegunn/vim-easy-align'
 Plugin 'justinmk/vim-dirvish'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'mattn/gist-vim'
-Plugin 'mattn/webapi-vim'
 Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'mxw/vim-jsx'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'nelstrom/vim-markdown-folding'
+Plugin 'pangloss/vim-javascript'
 Plugin 'racer-rust/vim-racer'
 Plugin 'rking/ag.vim'
 Plugin 'rust-lang/rust.vim'
@@ -67,19 +63,16 @@ nnoremap <silent><leader>j :JunkFile<CR>
 nnoremap <silent><leader>q :QuickRun<CR>
 nnoremap <silent><leader>cb :Dispatch cargo run<CR>
 
-nnoremap <silent><Leader>mn :MemoNew<CR>
-nnoremap <silent><Leader>mf :exe "CtrlP" g:memolist_path<CR><f5>
-nnoremap <silent><Leader>mg :MemoGrep<CR>
-
-nnoremap <silent><Leader>on :OctopressNew<CR>
-nnoremap <silent><Leader>of :exec "CtrlP" g:octopress_path . "/source/_posts"<CR>
-
 nnoremap <c-]> :CtrlPtjump<CR>
 vnoremap <c-]> :CtrlPtjumpVisual<CR>
 
 nnoremap <silent><Leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <silent><Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<CR><CR>
+
+nnoremap <silent><Leader>s :CtrlPSwitcher<CR>
+
+vnoremap <silent> <Enter> :EasyAlign<cr>
 
 "" copy & paste to system
 vmap <Leader>y "+y
@@ -96,13 +89,15 @@ au BufNewFile,BufRead *.rabl setf ruby
 "" colorschema
 syntax enable
 set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+colorscheme hybrid
 
 "" %% expamds to %:h
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 let g:ctrlp_extensions = ['quickfix', 'funky']
+let g:ctrlp_max_height = 50
+"" vim-ctrlp-tjump
+let g:ctrlp_tjump_only_silent = 1
 
 "" vim-indent-guides
 let g:indent_guides_auto_colors = 0
@@ -115,6 +110,21 @@ let g:indent_guides_gides_size            = $tabstop
 if !exists('loaded_matchit')
   runtime macros/matchit.vim
 endif
+
+"" CtrlP with current filename
+command! -nargs=0 CtrlPSwitcher call s:ctrlp_switcher()
+function! s:ctrlp_switcher()
+  try
+    let default_input_save = get(g:, 'ctrlp_default_input', '')
+    let g:ctrlp_default_input = expand('%:t:r')
+
+    call ctrlp#init(g:ctrlp_builtins)
+  finally
+    if exists('default_input_save')
+      let g:ctrlp_default_input = default_input_save
+    endif
+  endtry
+endfunction!
 
 "" Open Junk File
 command! -nargs=0 JunkFile call s:open_junk_file()
@@ -130,26 +140,11 @@ function! s:open_junk_file()
   endif
 endfunction
 
-"" octoeditor.vim
-let g:octopress_path = "~/src/github.com/tanaka51/tanaka51.github.com"
-let g:octopress_bundle_exec = 1
-
-"" memolist.vim
-let g:memolist_path = "~/Dropbox/memo"
-
-"" vim-ctrlp-tjump
-let g:ctrlp_tjump_only_silent = 1
-
 " c.f. http://celt.hatenablog.jp/entry/2014/07/11/205308
-" ag入ってたらagで検索させる
-" ついでにキャッシュファイルからの検索もさせない
 if executable('ag')
   let g:ctrlp_use_caching = 0
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
 endif
-
-"" gist-vim
-let g:gist_detect_filetype = 1
 
 "" quickrun
 let g:quickrun_config = {}
