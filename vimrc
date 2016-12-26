@@ -11,11 +11,13 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'cespare/vim-toml'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gmarik/Vundle.vim'
+Plug 'itchyny/lightline.vim'
 Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
 Plug 'kchmck/vim-coffee-script'
+Plug 'keith/swift.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -28,21 +30,25 @@ Plug 'tacahiroy/ctrlp-funky'
 Plug 'thinca/vim-quickrun'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tyru/open-browser.vim'
+Plug 'tyru/open-browser-github.vim'
 Plug 'w0ng/vim-hybrid'
 
 call plug#end()
 
 set ambiwidth=double
-set clipboard+=unnamedplus
+set clipboard+=unnamed,autoselect
 set encoding=utf-8
 set et
 set foldlevel=4
 set hidden
 set hls
 set incsearch
+set laststatus=2
 set number
 set shiftwidth=2
 set smartcase
@@ -50,6 +56,8 @@ set smartindent
 set t_Co=256
 set t_ut=
 set tabstop=2
+set timeout timeoutlen=500
+set ts=2
 set undofile
 
 noh
@@ -93,11 +101,11 @@ syntax enable
 set background=dark
 colorscheme hybrid
 
-"" %% expamds to %:h
+"" %% expands to %:h
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 let g:ctrlp_extensions = ['quickfix', 'funky']
-let g:ctrlp_max_height = 50
+let g:ctrlp_max_height = 30
 "" vim-ctrlp-tjump
 let g:ctrlp_tjump_only_silent = 1
 
@@ -118,9 +126,11 @@ command! -nargs=0 CtrlPSwitcher call s:ctrlp_switcher()
 function! s:ctrlp_switcher()
   try
     let default_input_save = get(g:, 'ctrlp_default_input', '')
-    let g:ctrlp_default_input = expand('%:t:r')
+    let l:path = expand('%:t:r')
+    let l:path = substitute(l:path, "_spec", "", "")
+    let g:ctrlp_default_input = l:path
 
-    call ctrlp#init(g:ctrlp_builtins)
+    call ctrlp#init(0)
   finally
     if exists('default_input_save')
       let g:ctrlp_default_input = default_input_save
@@ -158,3 +168,12 @@ let g:quickrun_config._ = {
 set hidden
 let g:racer_cmd = "$HOME/src/github.com/phildawes/racer/target/release/racer"
 let $RUST_SRC_PATH="/home/tanaka51/src/github.com/rust-lang/rust/src"
+
+"" rspec
+let g:rspec_command = "Dispatch bundle exec rspec {spec}"
+nmap <silent><leader>rc :call RunCurrentSpecFile()<CR>
+nmap <silent><leader>rn :call RunNearestSpec()<CR>
+nmap <silent><leader>rl :call RunLastSpec()<CR>
+nmap <silent><leader>ra :call RunAllSpecs()<CR>
+
+set tags+=tags,Gemfile.lock.tags,schema.tags
