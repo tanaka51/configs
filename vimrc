@@ -53,6 +53,7 @@ set number
 set shiftwidth=2
 set smartcase
 set smartindent
+set splitright
 set t_Co=256
 set t_ut=
 set tabstop=2
