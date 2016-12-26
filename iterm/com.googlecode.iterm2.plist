@@ -233,7 +233,7 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>-110 1339 606 456 -379 1200 2560 1057 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-379 1200 2559 1057 -379 1200 2560 1057 </string>
+	<string>-379 1210 2559 1047 -379 1200 2560 1057 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 11 1915 1166 0 0 1920 1177 </string>
 	<key>New Bookmarks</key>
@@ -970,10 +970,12 @@
 	<true/>
 	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt_selection</key>
 	<integer>1</integer>
+	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
+	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>5AD17A70-D28F-4EA3-9F55-28DBAD032CC0</string>
 	<key>NoSyncLastTipTime</key>
-	<real>496131563.79926598</real>
+	<real>498027469.11086398</real>
 	<key>NoSyncPermissionToShowTip</key>
 	<true/>
 	<key>NoSyncSilenceAnnoyingBellAutomatically</key>
@@ -984,6 +986,8 @@
 	<real>485335067.93934602</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
 	<real>486438519.710998</real>
+	<key>NoSyncTipsDisabled</key>
+	<true/>
 	<key>NoSyncTipsToNotShow</key>
 	<array>
 		<string>000</string>
@@ -1047,6 +1051,12 @@
 		<string>0057</string>
 		<string>0058</string>
 		<string>0059</string>
+		<string>0060</string>
+		<string>0061</string>
+		<string>0062</string>
+		<string>0063</string>
+		<string>0064</string>
+		<string>0065</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
@@ -1060,6 +1070,8 @@
 	<false/>
 	<key>PasteFromClipboard</key>
 	<false/>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1112,7 +1124,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-09-21T07:01:59Z</date>
+	<date>2016-12-21T08:14:52Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Secure Input</key>
@@ -1164,6 +1176,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.9</string>
+	<string>3.0.13</string>
 </dict>
 </plist>
