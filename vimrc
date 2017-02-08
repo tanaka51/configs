@@ -9,15 +9,16 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'cespare/vim-toml'
+Plug 'cocopon/vaffle.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'gmarik/Vundle.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ivalkeen/vim-ctrlp-tjump'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
-Plug 'justinmk/vim-dirvish'
 Plug 'kchmck/vim-coffee-script'
 Plug 'keith/swift.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mxw/vim-jsx'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -34,8 +35,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tyru/open-browser.vim'
 Plug 'tyru/open-browser-github.vim'
+Plug 'tyru/open-browser.vim'
 Plug 'w0ng/vim-hybrid'
 
 call plug#end()
@@ -86,12 +87,12 @@ nnoremap <silent><Leader>s :CtrlPSwitcher<CR>
 vnoremap <silent> <Enter> :EasyAlign<cr>
 
 "" copy & paste to system
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+" vmap <Leader>y "+y
+" vmap <Leader>d "+d
+" nmap <Leader>p "+p
+" nmap <Leader>P "+P
+" vmap <Leader>p "+p
+" vmap <Leader>P "+P
 
 "" filetype
 au BufNewFile,BufRead *.jbuilder setf ruby
@@ -164,6 +165,9 @@ let g:quickrun_config = {}
 let g:quickrun_config._ = {
   \ 'outputter/buffer/split' : 'below 8sp',
   \ }
+
+"" typescript tsx
+autocmd BufNewFile,BufRead *.{ts,tsx} set filetype=typescript
 
 "" racer
 set hidden
