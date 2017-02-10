@@ -60,6 +60,8 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=31'
 
 alias be='bundle exec'
 alias c='cargo'
+alias e='emacsclient -nw -a ""'
+alias emacs='emacsclient -nw -a ""'
 alias g='git'
 alias la='ls -a'
 alias ll='ls -l'
@@ -111,6 +113,11 @@ function tmux-attach-peco () {
 zle -N tmux-attach-peco
 bindkey '^[t' tmux-attach-peco
 
+function gim () {
+  local filename=$(git ls-files | peco)
+  vim $filename
+}
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
@@ -121,3 +128,6 @@ eval "$(anyenv init -)"
 # virtualenvwrapper
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 source $(which virtualenvwrapper.sh)
+function tn () {
+  tmux new -s $(basename $(pwd))
+}
