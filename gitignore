@@ -8,3 +8,4 @@ tags
 .#*
 \#*\#
 .DS_store
+.node-version
