@@ -109,7 +109,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 let g:ctrlp_extensions = ['quickfix', 'funky']
 let g:ctrlp_max_height = 30
 "" vim-ctrlp-tjump
-let g:ctrlp_tjump_only_silent = 1
+" let g:ctrlp_tjump_only_silent = 1
 
 "" vim-indent-guides
 let g:indent_guides_auto_colors = 0

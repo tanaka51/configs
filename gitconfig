@@ -7,7 +7,7 @@
 [init]
 	# templatedir = /Users/tanaka51/.git_templates
 [ghq]
-	root = /home/tanaka51/src
+	root = /Users/tanaka51/src
 [alias]
   pr = pull --rebase
   b = branch

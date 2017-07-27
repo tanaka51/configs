@@ -60,6 +60,10 @@ zstyle ':completion:*' list-colors 'di=36' 'ln=35' 'ex=31'
 
 alias be='bundle exec'
 alias c='cargo'
+alias dc='docker-compose'
+alias dl='docker-compose logs -f --tail=200'
+alias dr='docker-compose run --rm'
+alias drc='docker-compose run --rm $(basename $(pwd))'
 alias g='git'
 alias la='ls -a'
 alias ll='ls -l'
@@ -86,7 +90,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # http://blog.kentarok.org/entry/2014/06/03/135300
 function peco-src () {
-    local selected_dir=$(ghq list --full-path | peco --query "$LBUFFER")
+    local selected_dir=$(find ~/src/github.com -follow  -maxdepth 2 -mindepth 2 -type d | peco --query "$LBUFFER")
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
@@ -111,13 +115,21 @@ function tmux-attach-peco () {
 zle -N tmux-attach-peco
 bindkey '^[t' tmux-attach-peco
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+function gim() {
+  local filename=$(git ls-files | peco)
+  vim $filename
+}
 
-# anyenv
-export PATH="$HOME/.anyenv/bin:$PATH"
-eval "$(anyenv init -)"
+function dcc () {
+  docker-compose run --rm $1 bundle exec rails console
+}
 
-# virtualenvwrapper
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
-source $(which virtualenvwrapper.sh)
+function dca () {
+  docker attach $(docker-compose ps -q $1)
+}
+
+export NVM_DIR="/Users/tanaka51/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
